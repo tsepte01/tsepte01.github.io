@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  
-</head>
-<body>
-<input id="task"><button id="add">Add</button>
-<hr>
-<div id="todos"></div>
- 
-<script src="todo.js"></script>
-</body>
+<html>
+  <head>
+    <title>Todolist</title>
+    <link rel="stylesheet" href="dotolist.css">
+  </head>
+  <body>
+    <form>
+      <label>
+        Task Name
+        <input id="new-task-input" type="text" placeholder="Pick up milk">
+      </label>
+      <button type="button" id="add-task-button">
+        Add Task
+      </button>
+    </form>
+    <ul id="todolist-container">
+    </ul>
+    
+    <script type="text/template" id="list-item-template">
+    <li class="task">
+      <label>
+        <input class="checkbox" type="checkbox">
+        <span class="task-name"><!-- TASK_NAME --></span>
+      </label>
+    </li>
+    </script>
+
+    <script src="todolist.js"></script>
+  </body>
 </html>
