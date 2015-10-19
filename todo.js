@@ -1,51 +1,57 @@
-function get_todos() {
-    var todos = new Array;
-    var todos_str = localStorage.getItem('todo');
-    if (todos_str !== null) {
-        todos = JSON.parse(todos_str); 
+window.Todo = {
+  addTaskButton: document.getElementById("add-task-button"),
+  newTaskInput: document.getElementById("new-task-input"),
+  container: document.getElementById("todolist-container"),
+  template: document.getElementById("list-item-template").innerText,
+  setup: function() {
+    Todo.addTaskButton.addEventListener('click', Todo.onAddTaskClicked);
+    Todo.container.addEventListener('click', Todo.onTodolistClicked);
+
+    Todo.renderTasks();
+  },
+  onAddTaskClicked: function(event) {
+    var taskName = Todo.newTaskInput.value;
+    Todo.newTaskInput.value = "";
+
+    var taskHTML = Todo.template.replace("<!-- TASK_NAME -->", taskName);
+    Todo.container.insertAdjacentHTML('afterbegin', taskHTML);
+
+    Todo.saveTask(taskName, false);
+  },
+  onTodolistClicked: function(event) {
+    var targetElement = event.toElement;
+
+    while (!targetElement.classList.contains("task")) {
+      targetElement = targetElement.parentElement;
     }
-    return todos;
+
+    var checkbox = targetElement.querySelector(".checkbox");
+
+    if (checkbox.checked) {
+      targetElement.classList.add("completed");
+    } else {
+      targetElement.classList.remove("completed");
+    }
+
+    var taskNameElement = targetElement.querySelector(".task-name");
+    var taskName = taskNameElement.innerText;
+
+    Todo.saveTask(taskName, checkbox.checked);
+  },
+  saveTask: function(name, isCompleted) {
+    window.localStorage.setItem(name, isCompleted);
+  },
+  renderTasks: function() {
+    for (var i = 0; i < window.localStorage.length; i++) {
+      var taskName = window.localStorage.key(i);
+      var isCompleted = window.localStorage.getItem(taskName) == "true";
+      var taskHTML = Todo.template.replace("<!-- TASK_NAME -->", taskName);
+
+      if (!isCompleted) {
+        Todo.container.insertAdjacentHTML('afterbegin', taskHTML);
+      }
+    }
+  }
 }
- 
-function add() {
-    var task = document.getElementById('task').value;
- 
-    var todos = get_todos();
-    todos.push(task);
-    localStorage.setItem('todo', JSON.stringify(todos));
- 
-    show();
- 
-    return false;
-}
- 
-function remove() {
-    var id = this.getAttribute('id');
-    var todos = get_todos();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos));
- 
-    show();
- 
-    return false;
-}
- 
-function show() {
-    var todos = get_todos();
- 
-    var html = '<ul>';
-    for(var i=0; i<todos.length; i++) {
-        html += '<li>' + todos[i] + '<button class="remove" id="' + i  + '">x</button></li>';
-    };
-    html += '</ul>';
- 
-    document.getElementById('todos').innerHTML = html;
- 
-    var buttons = document.getElementsByClassName('remove');
-    for (var i=0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', remove);
-    };
-}
- 
-document.getElementById('add').addEventListener('click', add);
-show();
+
+Todo.setup();
