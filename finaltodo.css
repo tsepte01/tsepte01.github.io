@@ -1,0 +1,31 @@
+header{
+  text-align: center;
+}
+main{
+  height: 500px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  background-color: blue;
+}
+section{
+  text-align: center;
+  background-color: blue;
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto; 
+}
+.high{
+  color: red;
+  text-decoration: bold;
+}
+.medium{
+  color: yellow;
+}
+.low{
+  color: gray;
+}
+.done{
+  text-decoration: line-through;
+}
