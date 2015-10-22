@@ -1,53 +1,30 @@
 <html>
-      <head>
-          <title> My To Do List </title>
-          <style>
-              .Medium-P {
-                 color: green;
-                 }
-              .Low-P {
-                 color: blueviolet;
-                }
-              .High-P {
-                 color: red;
-                 }
-             .Completed {
-               text-decoration: line-through;
-               font-style: italic;
-               color: grey;        
-               }
-               
-               #main{
-               border:2px solid;
-               width: 55%;
-               height: 500px;
-               background-color: #999966;
-               }
-         </style> 
-         
-      </head>
-      <body> 
-         <script src="Todo list.js" type="text/javascript"></script>   
-            <h1>Todo List</h1>   
-            <div id="main">
-              <p> 
-                <ul id="list">
-                     
-               </ul>
-              </p>
-            </div>
-            <br>
-            <br>
-            <label for="input">New Task</label> 
-            <input id="input" type="text" value="Enter New Task Here!!"> <span id="get"></span>
-             <select id="Selection">
-             <option value="High-P" >High-P</option>
-             <option value="Medium-P">Medium-P</option>
-             <option  value="Low-P">Low-P</option>
-             </select>
-           <button onclick="Addtask()">+</button>
-          <script type="text/javascript">
-          window.onload = repoRecovery; 
-          </script> 
-      </body>
+ <head>
+  <title> To-Do App </title>
+  <link rel=stylesheet href=finaltodo.css type=text/css>
+ </head>
+ <body>
+  <script type=text/javascript src=finaltodo.js></script>
+  <script type="text/javascript" src="http://bnmnetp.github.io/CS130/listsaver.js"></script>
+  
+  <header>
+   <h1>Busy Busy</h1>
+  </header>
+  <main>
+   <ul id=tdlist></ul>
+  </main>
+  <section id=entry>
+   <label for="word">Enter Text</label>
+   <input type="text" id="word">
+   <select id="priority">
+    <option>high</option>
+    <option>medium</option>
+    <option>low</option>
+   </select>
+   <button onclick="addToDo();">New</button>
+  </section>
+  <script type="text/javascript">
+   window.onload = function() { restoreList("tdlist", checkItem) }
+  </script>
+ </body>
 </html>
