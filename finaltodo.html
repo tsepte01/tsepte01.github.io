@@ -11,7 +11,7 @@
    <h1>Busy Busy</h1>
   </header>
   <main>
-   <ul id=ulist></ul>
+   <ul id=tdlist></ul>
   </main>
   <section id=entry>
    <label for="word">Enter Text</label>
@@ -21,10 +21,10 @@
     <option>medium</option>
     <option>low</option>
    </select>
-   <button onclick="plus();">New</button>
+   <button onclick="addToDo();">New</button>
   </section>
   <script type="text/javascript">
-   window.onload = function() { restoreList("ulist", checkItem) }
+   window.onload = function() { restoreList("tdlist", checkItem) }
   </script>
  </body>
 </html>
