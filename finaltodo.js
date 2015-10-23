@@ -1,4 +1,4 @@
-plus = function() {
+add = function() {
  ul = document.querySelector("#ulist")
  newli = document.createElement("li");
  check = document.createElement("input");
