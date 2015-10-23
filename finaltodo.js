@@ -1,5 +1,5 @@
-addToDo = function() {
- ul = document.querySelector("#tdlist")
+plus = function() {
+ ul = document.querySelector("#ulist")
  newli = document.createElement("li");
  check = document.createElement("input");
  check.type = "checkbox";
@@ -12,7 +12,7 @@ addToDo = function() {
  newli.appendChild(check);
  newli.appendChild(litxt);
  ul.appendChild(newli);
- localSave("tdlist");
+ localSave("ulist");
 }
 checkItem = function() {
  if (this.checked){
@@ -20,5 +20,5 @@ checkItem = function() {
  } else{
   this.parentNode.classList.remove("done");
  }
- localSave("tdlist");
+ localSave("ulist");
 }
